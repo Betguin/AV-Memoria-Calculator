@@ -10,16 +10,49 @@
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <h1>⚔️ ANIME VANGUARDS</h1>
-            <p class="subtitle">Damage Calculator</p>
+            <div>
+                <h1>⚔️ ANIME VANGUARDS</h1>
+                <p class="subtitle">Damage Calculator</p>
+            </div>
+            <div class="language-selector">
+    <div class="custom-dropdown" id="languageDropdown">
+        
+        <div class="dropdown-display" id="languageDisplay">
+            <img class="lang-img" id="langImg" src="./images/br_flag.png" alt="flag">
+            <span class="lang-name" id="langName">Português</span>
+        </div>
+
+        <div class="dropdown-menu" id="languageMenu">
+            
+            <div class="dropdown-item"
+                 data-value="pt"
+                 data-name="Português"
+                 data-image="./images/br_flag.png">
+                <img class="lang-img-menu" src="./images/br_flag.png" alt="pt">
+                <span>Português</span>
+            </div>
+
+            <div class="dropdown-item"
+                 data-value="en"
+                 data-name="English"
+                 data-image="./images/usa_flag.png">
+                <img class="lang-img-menu" src="./images/usa_flag.png" alt="en">
+                <span>English</span>
+            </div>
+
+        </div>
+
+        <input type="hidden" id="languageSelect" value="pt">
+    </div>
+</div>
         </header>
 
         <main class="main-content">
             <!-- Unit Section -->
             <section class="calculator-section unit-section">
                 <div class="section-header">
-                    <h2>🔹 SISTEMA DA UNIT</h2>
-                    <span class="section-indicator">Unit</span>
+                    <h2 data-i18n="sistema_unit">🔹 SISTEMA DA UNIT</h2>
+                    <span class="section-indicator" data-i18n="unit_label">Unit</span>
                 </div>
 
                 <div class="input-group">
@@ -36,7 +69,7 @@
                 </div>
 
                 <div class="input-group">
-                    <label>Base Damage (Lvl 60)</label>
+                    <label>Base Damage</label>
                     <input 
                         type="number" 
                         id="unitBase" 
@@ -48,7 +81,7 @@
                 </div>
 
                 <div class="input-group">
-                    <label>Status (ATK %)</label>
+                    <label>Status (%)</label>
                     <input 
                         type="number" 
                         id="unitStatus" 
@@ -65,23 +98,23 @@
                     <div class="custom-dropdown" id="unitTraitDropdown">
                         <div class="dropdown-display" id="unitTraitDisplay">
                             <img class="trait-img" id="unitTraitImg" src="" alt="trait">
-                            <span class="trait-name">Selecionar</span>
+                            <span class="trait-name" data-i18n="selecionar">Selecionar</span>
                         </div>
                         <div class="dropdown-menu" id="unitTraitMenu">
                             <div class="dropdown-item" data-value="none" data-name="Nenhum" data-image="">
-                                <span>Nenhum (1.0×)</span>
+                                <span data-i18n="nenhum">Nenhum</span>
                             </div>
                             <div class="dropdown-item" data-value="solar" data-name="Solar" data-image="./images/solar.png">
                                 <img class="trait-img-menu" src="./images/solar.png" alt="solar">
-                                <span>Solar (1.1×)</span>
+                                <span>Solar</span>
                             </div>
                             <div class="dropdown-item" data-value="ethereal" data-name="Ethereal" data-image="./images/ethereal.png">
                                 <img class="trait-img-menu" src="./images/ethereal.png" alt="ethereal">
-                                <span>Ethereal (1.2×)</span>
+                                <span>Ethereal</span>
                             </div>
                             <div class="dropdown-item" data-value="monarch" data-name="Monarch" data-image="./images/monarch.png">
                                 <img class="trait-img-menu" src="./images/monarch.png" alt="monarch">
-                                <span>Monarch (4.0×)</span>
+                                <span>Monarch</span>
                             </div>
                         </div>
                         <input type="hidden" id="unitTrait" value="none">
@@ -89,7 +122,7 @@
                 </div>
 
                 <div class="result-box unit-result">
-                    <div class="result-label">Dano da Unit</div>
+                    <div class="result-label" data-i18n="unit_damage">Dano da Unit</div>
                     <div class="result-value" id="unitDamage">0</div>
                 </div>
             </section>
@@ -97,8 +130,8 @@
             <!-- Memory Section -->
             <section class="calculator-section memory-section">
                 <div class="section-header">
-                    <h2>🔹 SISTEMA DA MEMORIA</h2>
-                    <span class="section-indicator">Memory</span>
+                    <h2 data-i18n="sistema_memoria">🔹 SISTEMA DA MEMORIA</h2>
+                    <span class="section-indicator" data-i18n="memoria_label">Memory</span>
                 </div>
 
                 <div class="input-group">
@@ -143,11 +176,11 @@
                     <div class="custom-dropdown" id="memoryTraitDropdown">
                         <div class="dropdown-display" id="memoryTraitDisplay">
                             <img class="trait-img" id="memoryTraitImg" src="" alt="trait">
-                            <span class="trait-name">Selecionar</span>
+                            <span class="trait-name" data-i18n="selecionar">Selecionar</span>
                         </div>
                         <div class="dropdown-menu" id="memoryTraitMenu">
                             <div class="dropdown-item" data-value="none" data-name="Nenhum" data-image="">
-                                <span>Nenhum</span>
+                                <span data-i18n="nenhum">Nenhum</span>
                             </div>
                             <div class="dropdown-item" data-value="solar" data-name="Solar" data-image="./images/solar.png">
                                 <img class="trait-img-menu" src="./images/solar.png" alt="solar">
@@ -167,12 +200,13 @@
                 </div>
 
                 <div class="input-group evo-container">
-                    <label>Memoria Evoluída (EVO)</label>
+                    <label data-i18n="memoria_evo">Memoria Evoluída (EVO)</label>
                     <div class="toggle-group">
                         <button 
                             class="toggle-btn active" 
                             data-evo="false"
                             id="evoNo"
+                            data-i18n="nao"
                         >
                             Não
                         </button>
@@ -180,6 +214,7 @@
                             class="toggle-btn" 
                             data-evo="true"
                             id="evoYes"
+                            data-i18n="sim"
                         >
                             Sim (1.4×)
                         </button>
@@ -187,7 +222,7 @@
                 </div>
 
                 <div class="result-box memory-result">
-                    <div class="result-label">Dano da Memoria</div>
+                    <div class="result-label" data-i18n="memoria_damage">Dano da Memoria</div>
                     <div class="result-value" id="memoryDamage">0</div>
                 </div>
             </section>
@@ -195,7 +230,7 @@
             <!-- Total Damage Section -->
             <section class="calculator-section total-section">
                 <div class="section-header">
-                    <h2>🎯 DANO TOTAL COMBINADO</h2>
+                    <h2>🎯 <span data-i18n="total_damage">DANO TOTAL COMBINADO</span></h2>
                 </div>
 
                 <div class="total-breakdown">
@@ -210,7 +245,7 @@
                 </div>
 
                 <div class="result-box total-result">
-                    <div class="result-label">Dano Total</div>
+                    <div class="result-label" data-i18n="total_damage">Dano Total</div>
                     <div class="result-value" id="totalDamage">0</div>
                 </div>
 
@@ -220,69 +255,10 @@
             </section>
 
             <!-- Debug/Info Section -->
-            <section class="calculator-section info-section">
-                <div class="section-header">
-                    <h2>📊 MULTIPLICADORES APLICADOS</h2>
-                </div>
-
-                <div class="multiplier-grid">
-                    <div class="multiplier-item">
-                        <span class="mult-label">Unit Level:</span>
-                        <span class="mult-value" id="unitLevelMult">1.0×</span>
-                    </div>
-                    <div class="multiplier-item">
-                        <span class="mult-label">Unit Status:</span>
-                        <span class="mult-value" id="unitStatusMult">1.0×</span>
-                    </div>
-                    <div class="multiplier-item">
-                        <span class="mult-label">Unit Trait:</span>
-                        <span class="mult-value" id="unitTraitMult">1.0×</span>
-                    </div>
-                    <div class="multiplier-item">
-                        <span class="mult-label">Memory Base Status:</span>
-                        <span class="mult-value" id="memoryStatusMult">1.0×</span>
-                    </div>
-                    <div class="multiplier-item">
-                        <span class="mult-label">Memory Base Trait:</span>
-                        <span class="mult-value" id="memoryTraitMult">1.0×</span>
-                    </div>
-                    <div class="multiplier-item">
-                        <span class="mult-label">Memory Base Level:</span>
-                        <span class="mult-value" id="memoryLevelMult">1.0×</span>
-                    </div>
-                    <div class="multiplier-item">
-                        <span class="mult-label">Memory Status:</span>
-                        <span class="mult-value" id="memoryStatusMult">1.0×</span>
-                    </div>
-                    <div class="multiplier-item">
-                        <span class="mult-label">Memory Trait:</span>
-                        <span class="mult-value" id="memoryTraitMult">1.0×</span>
-                    </div>
-                    <div class="multiplier-item">
-                        <span class="mult-label">Memory EVO:</span>
-                        <span class="mult-value" id="memoryEvoMult">1.0×</span>
-                    </div>
-                    <div class="multiplier-item">
-                        <span class="mult-label">Unit Level (Applied):</span>
-                        <span class="mult-value" id="memoryRandomLevelMult">1.0×</span>
-                    </div>
-                    <div class="multiplier-item">
-                        <span class="mult-label">Unit Status (Applied):</span>
-                        <span class="mult-value" id="unitStatusMultMemory">1.0×</span>
-                    </div>
-                    <div class="multiplier-item">
-                        <span class="mult-label">Unit Trait (Applied):</span>
-                        <span class="mult-value" id="unitTraitMultMemory">1.0×</span>
-                    </div>
-                </div>
-            </section>
         </main>
 
         <footer class="footer">
-            <p>Baseado em testes práticos reais • Versão 1.0</p>
-            <p style="font-size: 0.85em; opacity: 0.8; margin-top: 8px;">
-                ℹ️ Isso é apenas um exemplo. O cálculo varia internamente no jogo e não é 100% exato.
-            </p>
+            <p>Baseado em testes práticos reais • Versão 1.1</p>
         </footer>
     </div>
 

@@ -28,6 +28,54 @@ body {
     box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
 }
 
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px 0;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.language-selector {
+    display: flex;
+    gap: 10px;
+}
+
+.lang-img {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    object-fit: contain;
+}
+
+.lang-img-menu {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    object-fit: contain;
+}
+
+.language-selector select {
+    padding: 8px 12px;
+    background: linear-gradient(135deg, #0a0e27 0%, #1a1a2e 100%);
+    border: 2px solid #00d4ff;
+    border-radius: 6px;
+    color: #e0e0e0;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    transition: all 0.3s ease;
+}
+
+.language-selector select:hover {
+    border-color: #00ff88;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
 .header h1 {
     font-size: 3em;
     background: linear-gradient(45deg, #00d4ff, #0099cc);

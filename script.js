@@ -1,3 +1,43 @@
+// ==========================
+// LANGUAGE SYSTEM
+// ==========================
+
+const TRANSLATIONS = {
+    pt: {
+        title: '⚔️ ANIME VANGUARDS',
+        subtitle: 'Calculadora de Dano'
+    },
+    en: {
+        title: '⚔️ ANIME VANGUARDS',
+        subtitle: 'Damage Calculator'
+    }
+};
+
+function detectLanguage() {
+    const saved = localStorage.getItem('language');
+    if (saved) return saved;
+
+    const browserLang = navigator.language.split('-')[0];
+    return (browserLang === 'pt' || browserLang === 'en') ? browserLang : 'pt';
+}
+
+let currentLanguage = detectLanguage();
+
+function setLanguage(lang) {
+    currentLanguage = lang;
+    localStorage.setItem('language', lang);
+    updatePageLanguage();
+}
+
+function updatePageLanguage() {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (TRANSLATIONS[currentLanguage][key]) {
+            el.textContent = TRANSLATIONS[currentLanguage][key];
+        }
+    });
+}
+
 // CONSTANTS
 const LEVEL_EXPONENT = 1.0235310218999;
 const EVO_MULTIPLIER = 1.4;
@@ -59,8 +99,16 @@ function initCustomDropdowns() {
                 hiddenInput.value = value;
                 
                 // Update display
-                display.querySelector('.trait-img').src = image;
-                display.querySelector('.trait-name').textContent = name;
+                const img = display.querySelector('img');
+                const text = display.querySelector('span');
+
+                if (img && image) {
+                    img.src = image;
+                }
+
+                if (text && name) {
+                    text.textContent = name;
+                }
                 
                 // Remove active states
                 items.forEach(i => i.classList.remove('selected'));
@@ -72,6 +120,10 @@ function initCustomDropdowns() {
                 
                 // Trigger calculation
                 hiddenInput.dispatchEvent(new Event('change'));
+
+                if (hiddenInput.id === 'languageSelect') {
+                    setLanguage(value);
+                }
             });
         });
     });
@@ -85,6 +137,17 @@ function initCustomDropdowns() {
 
 // EVENT LISTENERS
 document.addEventListener('DOMContentLoaded', function() {
+    setLanguage(currentLanguage);
+
+const languageInput = document.getElementById('languageSelect');
+if (languageInput) {
+    languageInput.value = currentLanguage;
+    languageInput.addEventListener('change', function () {
+        setLanguage(this.value);
+    });
+}
+
+updatePageLanguage();
     // Initialize custom dropdowns
     initCustomDropdowns();
     // Unit inputs
