@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Vanguards - Damage Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>⚔️ ANIME VANGUARDS</h1>
+            <p class="subtitle">Damage Calculator</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Unit Section -->
+            <section class="calculator-section unit-section">
+                <div class="section-header">
+                    <h2>🔹 SISTEMA DA UNIT</h2>
+                    <span class="section-indicator">Unit</span>
+                </div>
+
+                <div class="input-group">
+                    <label>Level</label>
+                    <input 
+                        type="range" 
+                        id="unitLevel" 
+                        min="1"
+                        max="60"
+                        value="60"
+                        step="1"
+                    >
+                    <div class="level-display" id="unitLevelDisplay">Lvl 60</div>
+                </div>
+
+                <div class="input-group">
+                    <label>Base Damage (Lvl 60)</label>
+                    <input 
+                        type="number" 
+                        id="unitBase" 
+                        placeholder="ex: 65000" 
+                        min="0"
+                        step="1"
+                    >
+                    <span class="unit-marker">DMG</span>
+                </div>
+
+                <div class="input-group">
+                    <label>Status (ATK %)</label>
+                    <input 
+                        type="number" 
+                        id="unitStatus" 
+                        placeholder="Max: 25%" 
+                        min="0"
+                        max="25"
+                        step="1"
+                    >
+                    <span class="unit-marker">%</span>
+                </div>
+
+                <div class="input-group">
+                    <label>Trait</label>
+                    <div class="custom-dropdown" id="unitTraitDropdown">
+                        <div class="dropdown-display" id="unitTraitDisplay">
+                            <img class="trait-img" id="unitTraitImg" src="" alt="trait">
+                            <span class="trait-name">Selecionar</span>
+                        </div>
+                        <div class="dropdown-menu" id="unitTraitMenu">
+                            <div class="dropdown-item" data-value="none" data-name="Nenhum" data-image="">
+                                <span>Nenhum (1.0×)</span>
+                            </div>
+                            <div class="dropdown-item" data-value="solar" data-name="Solar" data-image="https://static.wikia.nocookie.net/rbx-anime-vanguards/images/2/25/Solar.png/revision/latest?cb=20250728041832">
+                                <img class="trait-img-menu" src="https://static.wikia.nocookie.net/rbx-anime-vanguards/images/2/25/Solar.png/revision/latest?cb=20250728041832" alt="solar">
+                                <span>Solar (1.1×)</span>
+                            </div>
+                            <div class="dropdown-item" data-value="ethereal" data-name="Ethereal" data-image="https://static.wikia.nocookie.net/rbx-anime-vanguards/images/7/78/Ethereal.png/revision/latest?cb=20250728042017">
+                                <img class="trait-img-menu" src="https://static.wikia.nocookie.net/rbx-anime-vanguards/images/7/78/Ethereal.png/revision/latest?cb=20250728042017" alt="ethereal">
+                                <span>Ethereal (1.2×)</span>
+                            </div>
+                            <div class="dropdown-item" data-value="monarch" data-name="Monarch" data-image="https://static.wikia.nocookie.net/rbx-anime-vanguards/images/9/96/Monarch.png/revision/latest/scale-to-width-down/65?cb=20250728042118">
+                                <img class="trait-img-menu" src="https://static.wikia.nocookie.net/rbx-anime-vanguards/images/9/96/Monarch.png/revision/latest/scale-to-width-down/65?cb=20250728042118" alt="monarch">
+                                <span>Monarch (4.0×)</span>
+                            </div>
+                        </div>
+                        <input type="hidden" id="unitTrait" value="none">
+                    </div>
+                </div>
+
+                <div class="result-box unit-result">
+                    <div class="result-label">Dano da Unit</div>
+                    <div class="result-value" id="unitDamage">0</div>
+                </div>
+            </section>
+
+            <!-- Memory Section -->
+            <section class="calculator-section memory-section">
+                <div class="section-header">
+                    <h2>🔹 SISTEMA DA MEMORIA</h2>
+                    <span class="section-indicator">Memory</span>
+                </div>
+
+                <div class="input-group">
+                    <label>Level</label>
+                    <input 
+                        type="range" 
+                        id="memoryLevel" 
+                        min="1"
+                        max="60"
+                        value="60"
+                        step="1"
+                    >
+                    <div class="level-display" id="memoryLevelDisplay">Lvl 60</div>
+                </div>
+
+                <div class="input-group">
+                    <label>Memoria Base Damage</label>
+                    <input 
+                        type="number" 
+                        id="memoryBase" 
+                        placeholder="Ex: 2600" 
+                        min="0"
+                        step="1"
+                    >
+                    <span class="unit-marker">DMG</span>
+                </div>
+
+                <div class="input-group">
+                    <label>Memoria Status (%)</label>
+                    <input 
+                        type="number" 
+                        id="memoryStatus" 
+                        placeholder="Max: 25%" 
+                        min="0"
+                        step="0.1"
+                    >
+                    <span class="unit-marker">%</span>
+                </div>
+
+                <div class="input-group">
+                    <label>Memoria Trait</label>
+                    <div class="custom-dropdown" id="memoryTraitDropdown">
+                        <div class="dropdown-display" id="memoryTraitDisplay">
+                            <img class="trait-img" id="memoryTraitImg" src="" alt="trait">
+                            <span class="trait-name">Selecionar</span>
+                        </div>
+                        <div class="dropdown-menu" id="memoryTraitMenu">
+                            <div class="dropdown-item" data-value="none" data-name="Nenhum" data-image="">
+                                <span>Nenhum</span>
+                            </div>
+                            <div class="dropdown-item" data-value="solar" data-name="Solar" data-image="https://static.wikia.nocookie.net/rbx-anime-vanguards/images/2/25/Solar.png/revision/latest/scale-to-width-down/65?cb=20250728041832">
+                                <img class="trait-img-menu" src="https://static.wikia.nocookie.net/rbx-anime-vanguards/images/2/25/Solar.png/revision/latest/scale-to-width-down/65?cb=20250728041832" alt="solar">
+                                <span>Solar</span>
+                            </div>
+                            <div class="dropdown-item" data-value="jack" data-name="Jack" data-image="https://static.wikia.nocookie.net/rbx-anime-vanguards/images/e/e4/Jack_of_All.png/revision/latest?cb=20260204184411">
+                                <img class="trait-img-menu" src="https://static.wikia.nocookie.net/rbx-anime-vanguards/images/e/e4/Jack_of_All.png/revision/latest?cb=20260204184411" alt="jack">
+                                <span>Jack Of All</span>
+                            </div>
+                            <div class="dropdown-item" data-value="divinity" data-name="Divinity" data-image="https://static.wikia.nocookie.net/rbx-anime-vanguards/images/0/07/Divinity.png/revision/latest/scale-to-width-down/75?cb=20260204184412">
+                                <img class="trait-img-menu" src="https://static.wikia.nocookie.net/rbx-anime-vanguards/images/0/07/Divinity.png/revision/latest/scale-to-width-down/75?cb=20260204184412" alt="divinity">
+                                <span>Divinity</span>
+                            </div>
+                        </div>
+                        <input type="hidden" id="memoryTrait" value="none">
+                    </div>
+                </div>
+
+                <div class="input-group evo-container">
+                    <label>Memoria Evoluída (EVO)</label>
+                    <div class="toggle-group">
+                        <button 
+                            class="toggle-btn active" 
+                            data-evo="false"
+                            id="evoNo"
+                        >
+                            Não
+                        </button>
+                        <button 
+                            class="toggle-btn" 
+                            data-evo="true"
+                            id="evoYes"
+                        >
+                            Sim (1.4×)
+                        </button>
+                    </div>
+                </div>
+
+                <div class="result-box memory-result">
+                    <div class="result-label">Dano da Memoria</div>
+                    <div class="result-value" id="memoryDamage">0</div>
+                </div>
+            </section>
+
+            <!-- Total Damage Section -->
+            <section class="calculator-section total-section">
+                <div class="section-header">
+                    <h2>🎯 DANO TOTAL COMBINADO</h2>
+                </div>
+
+                <div class="total-breakdown">
+                    <div class="breakdown-item">
+                        <span class="breakdown-label">Unit:</span>
+                        <span class="breakdown-value" id="totalUnitDamageBreakdown">0</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span class="breakdown-label">Memoria:</span>
+                        <span class="breakdown-value" id="totalMemoryDamageBreakdown">0</span>
+                    </div>
+                </div>
+
+                <div class="result-box total-result">
+                    <div class="result-label">Dano Total</div>
+                    <div class="result-value" id="totalDamage">0</div>
+                </div>
+
+                <div id="validation-warning" class="validation-warning hidden">
+                    ⚠️ Valores podem estar fora da escala real do jogo!
+                </div>
+            </section>
+
+            <!-- Debug/Info Section -->
+            <section class="calculator-section info-section">
+                <div class="section-header">
+                    <h2>📊 MULTIPLICADORES APLICADOS</h2>
+                </div>
+
+                <div class="multiplier-grid">
+                    <div class="multiplier-item">
+                        <span class="mult-label">Unit Level:</span>
+                        <span class="mult-value" id="unitLevelMult">1.0×</span>
+                    </div>
+                    <div class="multiplier-item">
+                        <span class="mult-label">Unit Status:</span>
+                        <span class="mult-value" id="unitStatusMult">1.0×</span>
+                    </div>
+                    <div class="multiplier-item">
+                        <span class="mult-label">Unit Trait:</span>
+                        <span class="mult-value" id="unitTraitMult">1.0×</span>
+                    </div>
+                    <div class="multiplier-item">
+                        <span class="mult-label">Memory Base Status:</span>
+                        <span class="mult-value" id="memoryStatusMult">1.0×</span>
+                    </div>
+                    <div class="multiplier-item">
+                        <span class="mult-label">Memory Base Trait:</span>
+                        <span class="mult-value" id="memoryTraitMult">1.0×</span>
+                    </div>
+                    <div class="multiplier-item">
+                        <span class="mult-label">Memory Base Level:</span>
+                        <span class="mult-value" id="memoryLevelMult">1.0×</span>
+                    </div>
+                    <div class="multiplier-item">
+                        <span class="mult-label">Memory Status:</span>
+                        <span class="mult-value" id="memoryStatusMult">1.0×</span>
+                    </div>
+                    <div class="multiplier-item">
+                        <span class="mult-label">Memory Trait:</span>
+                        <span class="mult-value" id="memoryTraitMult">1.0×</span>
+                    </div>
+                    <div class="multiplier-item">
+                        <span class="mult-label">Memory EVO:</span>
+                        <span class="mult-value" id="memoryEvoMult">1.0×</span>
+                    </div>
+                    <div class="multiplier-item">
+                        <span class="mult-label">Unit Level (Applied):</span>
+                        <span class="mult-value" id="memoryRandomLevelMult">1.0×</span>
+                    </div>
+                    <div class="multiplier-item">
+                        <span class="mult-label">Unit Status (Applied):</span>
+                        <span class="mult-value" id="unitStatusMultMemory">1.0×</span>
+                    </div>
+                    <div class="multiplier-item">
+                        <span class="mult-label">Unit Trait (Applied):</span>
+                        <span class="mult-value" id="unitTraitMultMemory">1.0×</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>Baseado em testes práticos reais • Versão 1.0</p>
+            <p style="font-size: 0.85em; opacity: 0.8; margin-top: 8px;">
+                ℹ️ Isso é apenas um exemplo. O cálculo varia internamente no jogo e não é 100% exato.
+            </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
